@@ -21,10 +21,10 @@ def get_gemini_llm(
 ) -> Optional[ChatGoogleGenerativeAI]:
     """Instantiates a Google Gemini chat model."""
     key = api_key or settings.GEMINI_API_KEY or settings.GOOGLE_API_KEY or "dummy-gemini-key"
-    model_name = model or settings.GEMINI_MODEL or "gemini-1.5-flash"
+    model_name = model or settings.GEMINI_MODEL or "gemini-3.5-flash"
 
     if not model_name.startswith("models/") and not model_name.startswith("gemini-"):
-        model_name = "gemini-1.5-flash"
+        model_name = "gemini-3.5-flash"
 
     try:
         return ChatGoogleGenerativeAI(
@@ -93,7 +93,7 @@ def get_resilient_llm(temperature: float = 0.0) -> BaseChatModel:
             primary_llm = fallback_llms.pop(0)
         else:
             primary_llm = ChatGoogleGenerativeAI(
-                model="gemini-1.5-flash",
+                model="gemini-3.5-flash",
                 google_api_key=settings.GEMINI_API_KEY or settings.GOOGLE_API_KEY or "dummy-gemini-key",
                 temperature=temperature
             )
