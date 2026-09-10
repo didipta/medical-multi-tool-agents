@@ -5,11 +5,13 @@ from app.utils.logger import logger
 
 sql_agent = None
 
+
 def _get_agent():
     global sql_agent
     if sql_agent is None:
         sql_agent = create_medical_sql_agent(settings.HEART_DB_PATH)
     return sql_agent
+
 
 @tool
 def HeartDiseaseDBTool(query: str) -> str:
@@ -20,8 +22,13 @@ def HeartDiseaseDBTool(query: str) -> str:
     Input should be a clear natural language question about heart disease patient data."""
     try:
         agent = _get_agent()
+        if agent is None:
+            logger.warning("Heart Disease SQL agent unavailable, returning fallback notice.")
+            return "Heart disease database is currently unreachable. Please use cardiology clinical guidelines."
+
         result = agent.invoke({"input": query})
-        return result.get("output", "No response generated.")
+        output = result.get("output", "").strip()
+        return output if output else "No matching heart disease patient records found."
     except Exception as e:
-        logger.error(f"HeartDiseaseDBTool execution failed: {e}")
-        return f"Error querying Heart Disease Database: {str(e)}"
+        logger.error(f"HeartDiseaseDBTool execution failed: {e}", exc_info=True)
+        return "Unable to retrieve heart disease database records at this time. Proceeding with cardiology clinical guidelines."

@@ -7,10 +7,21 @@ ENV_PATH = BASE_DIR / ".env"
 
 
 class Settings(BaseSettings):
-   
+    # OpenAI configuration
     OPENAI_API_KEY: str = ""
-    TAVILY_API_KEY: str = ""
     OPENAI_MODEL: str = "gpt-4o-mini"
+
+    # Google Gemini configuration
+    GEMINI_API_KEY: str = ""
+    GOOGLE_API_KEY: str = ""
+    GEMINI_MODEL: str = "gemini-1.5-flash"
+
+    # Provider & Fallback routing
+    PRIMARY_PROVIDER: str = "gemini"  # "gemini" or "openai"
+    FALLBACK_PROVIDER: str = "openai"  # "openai" or "gemini"
+
+    # Tool & Logging configuration
+    TAVILY_API_KEY: str = ""
     LOG_LEVEL: str = "INFO"
 
 
