@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     # Google Gemini configuration
     GEMINI_API_KEY: str = ""
     GOOGLE_API_KEY: str = ""
-    GEMINI_MODEL: str = "gemini-1.5-flash"
+    GEMINI_MODEL: str = "gemini-3.5-flash"
 
     # Provider & Fallback routing
     PRIMARY_PROVIDER: str = "gemini"  # "gemini" or "openai"

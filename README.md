@@ -15,7 +15,7 @@ An advanced, fault-tolerant **Multi-Agent Medical AI Assistant** designed to sea
 ```mermaid
 flowchart TD
     User([👤 User Query]) --> Router{🤖 Multi-Tool Medical Agent}
-    
+
     subgraph LLM_Engine ["🧠 Resilient LLM Engine"]
         PrimaryLLM["Primary LLM\n(Google Gemini)"]
         FallbackLLM["Fallback LLM\n(OpenAI GPT-4o-mini)"]
@@ -50,6 +50,7 @@ flowchart TD
 ## ✨ Key Capabilities
 
 ### 🧰 Specialized Medical Tools
+
 1. **🫀 Heart Disease Database Tool (`HeartDiseaseDBTool`)**
    - Direct SQL query execution over patient records.
    - Analyzes parameters: `age`, `sex`, `chest pain (cp)`, `trestbps`, `cholesterol (chol)`, `fasting blood sugar (fbs)`, `restecg`, `thalach`, and target heart disease diagnosis.
@@ -66,7 +67,8 @@ flowchart TD
 ---
 
 ### 🛡️ Resilient Dual-Model Fallback System
-- **Google Gemini & OpenAI Integration**: Supports Google Gemini (`gemini-1.5-flash`, `gemini-2.0-flash`) and OpenAI (`gpt-4o-mini`, `gpt-4o`).
+
+- **Google Gemini & OpenAI Integration**: Supports Google Gemini (`gemini-3.5-flash`, `gemini-2.0-flash`) and OpenAI (`gpt-4o-mini`, `gpt-4o`).
 - **Dynamic Provider Routing**: Set your preferred primary and fallback providers in `.env`.
 - **Zero-Crash Execution**: If the primary provider hits quota limits (e.g., HTTP 429), authentication issues, or network timeouts, the system automatically routes to the secondary provider without interrupting the session.
 - **Graceful Medical Fallback Answers**: If all network or model services are unreachable, the system automatically generates high-quality, structured clinical fallback guidance rather than raising unhandled exceptions or displaying raw error modals.
@@ -232,6 +234,7 @@ python -m pytest tests/ -v
 ```
 
 **Test Coverage Summary:**
+
 - `test_database.py`: Validates SQLite database connectivity and patient table schemas.
 - `test_fallback.py`: Tests Gemini LLM instantiation, fallback model chaining, and contextual fallback medical answers.
 - `test_tools.py`: Tests live execution and graceful error catching for all tools.
@@ -240,16 +243,16 @@ python -m pytest tests/ -v
 
 ## ⚙️ Configuration Reference
 
-| Environment Variable | Description | Default |
-| :--- | :--- | :--- |
-| `PRIMARY_PROVIDER` | Main model provider (`gemini` or `openai`) | `gemini` |
-| `FALLBACK_PROVIDER` | Backup model provider if primary fails | `openai` |
-| `GEMINI_API_KEY` | Google AI Studio API key | `""` |
-| `GEMINI_MODEL` | Google Gemini model identifier | `gemini-1.5-flash` |
-| `OPENAI_API_KEY` | OpenAI API key | `""` |
-| `OPENAI_MODEL` | OpenAI model identifier | `gpt-4o-mini` |
-| `TAVILY_API_KEY` | Tavily search API key for live medical facts | `""` |
-| `LOG_LEVEL` | Python logging level (`DEBUG`, `INFO`, `WARNING`, `ERROR`) | `INFO` |
+| Environment Variable | Description                                                | Default            |
+| :------------------- | :--------------------------------------------------------- | :----------------- |
+| `PRIMARY_PROVIDER`   | Main model provider (`gemini` or `openai`)                 | `gemini`           |
+| `FALLBACK_PROVIDER`  | Backup model provider if primary fails                     | `openai`           |
+| `GEMINI_API_KEY`     | Google AI Studio API key                                   | `""`               |
+| `GEMINI_MODEL`       | Google Gemini model identifier                             | `gemini-3.5-flash` |
+| `OPENAI_API_KEY`     | OpenAI API key                                             | `""`               |
+| `OPENAI_MODEL`       | OpenAI model identifier                                    | `gpt-4o-mini`      |
+| `TAVILY_API_KEY`     | Tavily search API key for live medical facts               | `""`               |
+| `LOG_LEVEL`          | Python logging level (`DEBUG`, `INFO`, `WARNING`, `ERROR`) | `INFO`             |
 
 ---
 
