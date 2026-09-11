@@ -2,14 +2,13 @@
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![LangChain](https://img.shields.io/badge/LangChain-0.3.27-brightgreen.svg)](https://python.langchain.com/)
-[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-1.5%20Flash%20%2F%202.0-orange.svg)](https://ai.google.dev/)
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-3.5%20Flash%20%2F%202.0-orange.svg)](https://ai.google.dev/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o--mini-black.svg)](https://platform.openai.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 An advanced, fault-tolerant **Multi-Agent Medical AI Assistant** designed to seamlessly answer complex clinical analytics queries, dataset statistics, and general medical knowledge questions. Built on **LangChain**, the system combines multi-database SQL sub-agents, live web search capabilities, resilient multi-tier LLM fallbacks (**Google Gemini** & **OpenAI**), and context-aware fallback answer generation to ensure zero-crash, production-ready reliability.
 
 ---
-
 ## 📌 Architecture & Workflow
 
 ```mermaid
